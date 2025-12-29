@@ -37,7 +37,7 @@ const App: React.FC = () => {
   setResponses(newResponses);
   localStorage.setItem('agile_survey_responses', JSON.stringify(newResponses));
 
-  await saveResponseToDB(response); // 👈 SADECE BU SATIR
+  await saveResponseToDB(response);
 
   alert('Anketiniz başarıyla gönderildi. Katkınız için teşekkürler!');
   setView(View.DASHBOARD);
