@@ -21,37 +21,54 @@ const App: React.FC = () => {
   const [view, setView] = useState<View>(View.SURVEY);
   const [responses, setResponses] = useState<SurveyResponse[]>([]);
 
-  useEffect(() => {
-  fetch("/api/responses?nocache=1")
-    .then((res) => res.json())
-    .then((data) => {
-      if (data?.rows) {
-        const parsed = data.rows
-          .map((r: any) => {
-            try {
-              return JSON.parse(r.payload);
-            } catch {
-              return null;
-            }
-          })
-          .filter(Boolean);
+  const loadResponsesFromDB = async () => {
+  try {
+    const res = await fetch("/api/responses?nocache=1");
+    const data = await res.json();
 
-        setResponses(parsed);
-      }
-    })
-    .catch((err) => {
-      console.error("DB fetch failed", err);
-    });
+    if (data?.rows) {
+      const parsed = data.rows
+        .map((r: any) => {
+          try {
+            return JSON.parse(r.payload);
+          } catch {
+            return null;
+          }
+        })
+        .filter(Boolean);
+
+      setResponses(parsed);
+    }
+  } catch (err) {
+    console.error("DB fetch failed", err);
+  }
+};
+
+  
+  useEffect(() => {
+  // İlk açılışta hemen çek
+  loadResponsesFromDB();
+
+  // Sonra her 5 saniyede bir yenile
+  const intervalId = setInterval(() => {
+    loadResponsesFromDB();
+  }, 5000);
+
+  // Sayfadan çıkınca interval'i durdur
+  return () => clearInterval(intervalId);
 }, []);
 
 
   const handleSurveySubmit = async (response: SurveyResponse) => {
   const newResponses = [...responses, response];
   setResponses(newResponses);
-  localStorage.setItem('agile_survey_responses', JSON.stringify(newResponses));
+//  localStorage.setItem('agile_survey_responses', JSON.stringify(newResponses));
 
   await saveResponseToDB(response);
 
+    await loadResponsesFromDB();
+
+    
   alert('Anketiniz başarıyla gönderildi. Katkınız için teşekkürler!');
   setView(View.DASHBOARD);
 };
