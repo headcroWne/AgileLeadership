@@ -22,15 +22,24 @@ const App: React.FC = () => {
   const [responses, setResponses] = useState<SurveyResponse[]>([]);
 
   useEffect(() => {
-  fetch("/api/responses")
-    .then(res => res.json())
-    .then(data => {
+  fetch("/api/responses?nocache=1")
+    .then((res) => res.json())
+    .then((data) => {
       if (data?.rows) {
-        const parsed = data.rows.map((r: any) => JSON.parse(r.payload));
+        const parsed = data.rows
+          .map((r: any) => {
+            try {
+              return JSON.parse(r.payload);
+            } catch {
+              return null;
+            }
+          })
+          .filter(Boolean);
+
         setResponses(parsed);
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.error("DB fetch failed", err);
     });
 }, []);
