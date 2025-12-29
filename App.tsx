@@ -46,16 +46,37 @@ const App: React.FC = () => {
 
   
   useEffect(() => {
-  // İlk açılışta hemen çek
-  loadResponsesFromDB();
+  const load = async () => {
+    try {
+      const res = await fetch("/api/responses?nocache=1");
+      const data = await res.json();
 
-  // Sonra her 5 saniyede bir yenile
-  const intervalId = setInterval(() => {
-    loadResponsesFromDB();
-  }, 5000);
+      if (data?.rows) {
+        const parsed = data.rows
+          .map((r: any) => {
+            try {
+              return JSON.parse(r.payload);
+            } catch {
+              return null;
+            }
+          })
+          .filter(Boolean);
 
-  // Sayfadan çıkınca interval'i durdur
-  return () => clearInterval(intervalId);
+        setResponses(parsed);
+      }
+    } catch (err) {
+      console.error("DB fetch failed", err);
+    }
+  };
+
+  // ilk açılışta hemen çek
+  load();
+
+  // sonra 5 saniyede bir çek
+  const id = setInterval(load, 5000);
+
+  // sayfa kapanınca durdur
+  return () => clearInterval(id);
 }, []);
 
 
