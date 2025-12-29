@@ -4,6 +4,14 @@ import SurveyForm from './components/SurveyForm';
 import Dashboard from './components/Dashboard';
 import { SurveyResponse } from './types';
 
+async function saveResponseToDB(response: any) {
+  await fetch("/api/responses", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(response),
+  });
+}
+
 enum View {
   SURVEY,
   DASHBOARD
