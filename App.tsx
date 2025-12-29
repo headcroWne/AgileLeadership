@@ -46,11 +46,11 @@ const App: React.FC = () => {
 
   
   useEffect(() => {
-  const load = async () => {
-    try {
-      const res = await fetch("/api/responses?nocache=1");
-      const data = await res.json();
+  if (view !== View.DASHBOARD) return;
 
+  fetch("/api/responses?nocache=1")
+    .then((res) => res.json())
+    .then((data) => {
       if (data?.rows) {
         const parsed = data.rows
           .map((r: any) => {
@@ -64,20 +64,12 @@ const App: React.FC = () => {
 
         setResponses(parsed);
       }
-    } catch (err) {
+    })
+    .catch((err) => {
       console.error("DB fetch failed", err);
-    }
-  };
+    });
+}, [view]);
 
-  // ilk açılışta hemen çek
-  load();
-
-  // sonra 5 saniyede bir çek
-  const id = setInterval(load, 5000);
-
-  // sayfa kapanınca durdur
-  return () => clearInterval(id);
-}, []);
 
 
   const handleSurveySubmit = async (response: SurveyResponse) => {
