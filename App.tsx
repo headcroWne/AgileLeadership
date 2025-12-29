@@ -22,15 +22,19 @@ const App: React.FC = () => {
   const [responses, setResponses] = useState<SurveyResponse[]>([]);
 
   useEffect(() => {
-    const saved = localStorage.getItem('agile_survey_responses');
-    if (saved) {
-      try {
-        setResponses(JSON.parse(saved));
-      } catch (e) {
-        console.error("Failed to parse saved responses");
+  fetch("/api/responses")
+    .then(res => res.json())
+    .then(data => {
+      if (data?.rows) {
+        const parsed = data.rows.map((r: any) => JSON.parse(r.payload));
+        setResponses(parsed);
       }
-    }
-  }, []);
+    })
+    .catch(err => {
+      console.error("DB fetch failed", err);
+    });
+}, []);
+
 
   const handleSurveySubmit = async (response: SurveyResponse) => {
   const newResponses = [...responses, response];
