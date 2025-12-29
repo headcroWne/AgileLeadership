@@ -32,13 +32,17 @@ const App: React.FC = () => {
     }
   }, []);
 
-  const handleSurveySubmit = (response: SurveyResponse) => {
-    const newResponses = [...responses, response];
-    setResponses(newResponses);
-    localStorage.setItem('agile_survey_responses', JSON.stringify(newResponses));
-    alert('Anketiniz başarıyla gönderildi. Katkınız için teşekkürler!');
-    setView(View.DASHBOARD);
-  };
+  const handleSurveySubmit = async (response: SurveyResponse) => {
+  const newResponses = [...responses, response];
+  setResponses(newResponses);
+  localStorage.setItem('agile_survey_responses', JSON.stringify(newResponses));
+
+  await saveResponseToDB(response); // 👈 SADECE BU SATIR
+
+  alert('Anketiniz başarıyla gönderildi. Katkınız için teşekkürler!');
+  setView(View.DASHBOARD);
+};
+
 
   const clearData = () => {
     if (confirm('Tüm verileri silmek istediğinize emin misiniz?')) {
