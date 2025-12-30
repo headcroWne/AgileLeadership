@@ -126,11 +126,14 @@ const App: React.FC = () => {
               </button>
               <button
                 onClick={() => setView(View.DASHBOARD)}
-                className={`px-4 py-2 rounded-full font-medium transition-all ${
-                  view === View.DASHBOARD 
-                  ? 'bg-indigo-100 text-indigo-700' 
-                  : 'text-gray-500 hover:bg-gray-100'
-                }`}
+                className={`px-4 py-2 rounded-full font-medium transition-all $
+                  {view === View.DASHBOARD && isAdmin ? (
+  <Dashboard /* props neyse aynı */ />
+) : (
+  <SurveyForm /* props neyse aynı */ />
+)
+                
+                `}
               >
                 Dashboard
               </button>
