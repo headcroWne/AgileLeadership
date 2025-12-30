@@ -15,7 +15,7 @@ interface RadarChartProps {
 const AgileRadarChart: React.FC<RadarChartProps> = ({ data }) => {
   return (
     <div className="h-96 w-full">
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height={350}>
         <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
           <PolarGrid />
           <PolarAngleAxis dataKey="subject" />
