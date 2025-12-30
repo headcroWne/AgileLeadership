@@ -4,7 +4,7 @@ import { Dimension } from './types';
 export const DIMENSIONS: Dimension[] = [
   {
     id: 'visionary',
-    title: 'Vizyoner (Visionary)',
+    title: 'Vizyonerdir (Visionary)',
     description: 'Liderler, ikna edici bir vizyon oluşturur ve ekipteki herkesi bu vizyonu bizimle birlikte gerçekleştirmek için ilham verir.'
   },
   {
@@ -29,7 +29,7 @@ export const DIMENSIONS: Dimension[] = [
   },
   {
     id: 'multiplier',
-    title: 'Çarpan Etkisi Yaratır (Multiplier)',
+    title: 'Çoğaltandır (Multiplier)',
     description: 'Liderler ekibini ön planda tutar ve bize değer verir. Sürekli kişisel gelişimimiz için bizi teşvik ederler. Çalışanların yeteneklerini güçlendirir, uzmanlık alanımızın içinde ve dışında, yeni alanlarda kendimizi geliştirmemiz ve sınırlarımızı zorlamamız için bize ilham verir.'
   },
   {
@@ -59,7 +59,7 @@ export const DIMENSIONS: Dimension[] = [
   },
   {
     id: 'growth_mindset',
-    title: 'Büyüme Zihniyeti Sergiler (Growth Mindset)',
+    title: 'Gelişim Zihniyeti Sergiler (Growth Mindset)',
     description: 'Büyüme Zihniyeti: Liderler, yeni fikirlere açık olmaları ve zorlukları bir büyüme fırsatı olarak görmeleriyle büyüme zihniyetini sergilerler. Sistemi bir bütün olarak anlarlar ve ekiplerini sürekli iyileştirme için koçluk yaparlar.
 '
   },
