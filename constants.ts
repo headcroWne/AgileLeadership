@@ -5,67 +5,68 @@ export const DIMENSIONS: Dimension[] = [
   {
     id: 'visionary',
     title: 'Vizyoner (Visionary)',
-    description: 'Liderler etkileyici bir vizyon oluşturur ve ekipteki herkesi bu vizyonu bizimle birlikte takip etmeye teşvik eder.'
+    description: 'Liderler, ikna edici bir vizyon oluşturur ve ekipteki herkesi bu vizyonu bizimle birlikte gerçekleştirmek için ilham verir.'
   },
   {
     id: 'engaging',
-    title: 'Etkileşim (Engaging)',
-    description: 'Liderler, bize kendi yöntemlerimizi yapmamızı yönlendirmek yerine ekiplerinden yardım isterler.'
+    title: 'Katılımcıdır (Engaging)',
+    description: 'Liderler, bize kendi yöntemleriyle işleri yapmamızı emretmek yerine, ekiplerinden yardım isterler. Liderlerin amacı, organizasyonun hedeflerine ulaşmak için herkesi sürece dahil etmek ve katılımını sağlamaktır.'
   },
   {
     id: 'autonomy',
     title: 'Özerkliği Sağlar (Enables Autonomy)',
-    description: 'Liderler, projeleri kendi yöntemlerimizle yürütmemize ve ekiplerinin hedeflere ulaşmalarını kendilerinin yönetmesine izin vermemize güvenir.'
+    description: 'Liderler, projeleri kendi yöntemlerimizle kendimiz yürütmemize güvenirler ve ekiplerinin hedeflerine ulaşmak için kendi kendilerini yönetmelerine izin verirler. Liderler mikro yönetim yapmazlar, bunun yerine bize yetki verirler ve bağlamda en iyi bilgiye sahip olduğumuz için kararları tutarlı bir şekilde bize bırakırlar.'
   },
   {
     id: 'adaptive',
-    title: 'Uyum Sağlamak (Adaptive)',
-    description: 'Liderler belirsizlikten rahat hisseder ve ekiplerini hızlı karar verme konusunda benimserler.'
+    title: 'Uyum Sağlar (Adaptive)',
+    description: 'Liderler belirsizlikten rahatsızlık duymazlar ve hızlı karar verme sürecinde ekiplerini desteklerler. Mükemmelliği aramazlar, bunun yerine sık sık küçük adımlarla ilerlemeyi (çözümler) ve sürekli değer akışını desteklerler.'
   },
   {
     id: 'servant',
-    title: 'Hizmetkâr (Servant)',
-    description: 'Liderler sürekli bizden geri bildirim alıyor ve daha iyi performans gösterebilmek için neye ihtiyacımız olduğunu soruyorlar.'
+    title: 'Hizmetkârdır (Servant)',
+    description: 'Liderler sürekli olarak bizden geri bildirim alırlar ve daha iyi performans gösterebilmemiz için neye ihtiyacımız olduğunu sorarlar. Liderler bizim (çalışanlarının) isteklerine göre hareket ederler ve dileklerimizi gerçekleştirmek, engelleri ortadan kaldırmak ve böylece ilerlememize yardımcı olmak için ellerinden gelen her şeyi yaparlar.'
   },
   {
     id: 'multiplier',
-    title: 'Çarpan (Multiplier)',
-    description: 'Liderler takımlarını öncelikli koyuyorlar ve bizi önemsiyorlar. Sürekli kişisel gelişimimiz için bizi teşvik ediyorlar.'
+    title: 'Çarpan Etkisi Yaratır (Multiplier)',
+    description: 'Liderler ekibini ön planda tutar ve bize değer verir. Sürekli kişisel gelişimimiz için bizi teşvik ederler. Çalışanların yeteneklerini güçlendirir, uzmanlık alanımızın içinde ve dışında, yeni alanlarda kendimizi geliştirmemiz ve sınırlarımızı zorlamamız için bize ilham verir.'
   },
   {
     id: 'team_player',
-    title: 'Takım Oyuncusu (Team Player)',
-    description: 'Liderler ekibimizin bir parçası, iş birliği ve takım çalışması konusunda doğru örnekler sergiliyorlar.'
+    title: 'Takım Oyuncusudur (Team Player)',
+    description: 'Liderler ekibimizin bir parçasıdır, işbirliği ve takım çalışması konusunda doğru örneği sergilerler.'
   },
   {
     id: 'focus',
     title: 'Odaklanmayı Sağlar (Enables Focus)',
-    description: 'Liderler, ekiplerini bitirmeye odaklanmak ve çoklu görevden kaçınmak için başlamayı bırakmaya teşvik eder.'
+    description: 'Liderler, ekiplerini bitirmeye odaklanmak için başlangıç yapmayı bırakmaya ve çoklu görevlerden kaçınmaya teşvik eder. Net hedeflerle rehberlik eder ve ekibin önceliklerini belirlemesine destek olur.'
   },
   {
     id: 'customer_oriented',
-    title: 'Müşteri Odaklı (Customer Oriented)',
-    description: 'Liderler, müşterilere sunulan gerçek değere odaklanır ve müşteri memnuniyetine önem verir.'
+    title: 'Müşteri Odaklıdır (Customer Oriented)',
+    description: 'Liderler, müşterilere sunulan gerçek değere odaklanır ve müşteri memnuniyetini önemser. Müşteri ihtiyaçlarını keşfetmek ve işimizin etkisini artırmak için mekanizmalar konusunda bize rehberlik ederler.'
   },
   {
     id: 'entrepreneur',
-    title: 'Girişimci (Entrepreneur)',
-    description: 'Liderler yeniliği artırmak için deneysel bir çalışma ortamını benimser, deneme için alanımız var.'
+    title: 'Girişimciliği Destekler (Entrepreneur)',
+    description: 'Liderler, yeniliği teşvik etmek için deneysel bir çalışma ortamını benimserler, deneme yapabileceğimiz alanlar vardır ve başarı ve başarısızlıklardan özgürce ders alabiliriz. Bize fikirlerimizi paylaşma ve bunları uygulamaya dönüştürme imkânı sağlarken, yenilik için deneyimciliği ve girişimci ruhu benimserler.'
   },
   {
     id: 'transparency',
     title: 'Şeffaflığı Artırır (Boosts Transparency)',
-    description: 'Liderler ihtiyacımız olan tüm bilgileri sunar ve her türlü verinin genel görünürlüğünü artırmak için çalışır.'
+    description: 'Liderler, ihtiyacımız olan tüm bilgileri paylaşır ve daha iyi kararlar alabilmemiz için her türlü verinin genel görünürlüğünü artırmaya çalışır. Açık ve güvene dayalı bir ortam yaratırlar.'
   },
   {
     id: 'growth_mindset',
-    title: 'Büyüme Zihniyeti (Growth Mindset)',
-    description: 'Liderler, yeni fikirlere açık olarak büyüme zihniyeti gösterir ve zorlukları bir büyüme fırsatı olarak görürler.'
+    title: 'Büyüme Zihniyeti Sergiler (Growth Mindset)',
+    description: 'Büyüme Zihniyeti: Liderler, yeni fikirlere açık olmaları ve zorlukları bir büyüme fırsatı olarak görmeleriyle büyüme zihniyetini sergilerler. Sistemi bir bütün olarak anlarlar ve ekiplerini sürekli iyileştirme için koçluk yaparlar.
+'
   },
   {
     id: 'people_oriented',
-    title: 'İnsan Odaklı (People Oriented)',
-    description: 'Liderler yaptıkları her şeyde ve attıkları her adımda insanlara odaklanır.'
+    title: 'İnsan Odaklıdır (People Oriented)',
+    description: 'Liderler, yaptıkları her şeyde ve attıkları her adımda insanlara odaklanırlar.'
   }
 ];
 
