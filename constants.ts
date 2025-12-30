@@ -60,7 +60,7 @@ export const DIMENSIONS: Dimension[] = [
   {
     id: 'growth_mindset',
     title: 'Gelişim Zihniyeti Sergiler (Growth Mindset)',
-    description: 'Büyüme Zihniyeti: Liderler, yeni fikirlere açık olmaları ve zorlukları bir büyüme fırsatı olarak görmeleriyle büyüme zihniyetini sergilerler. Sistemi bir bütün olarak anlarlar ve ekiplerini sürekli iyileştirme için koçluk yaparlar.
+    description: 'Büyüme Zihniyeti: Liderler, yeni fikirlere açık olmaları ve zorlukları bir büyüme fırsatı olarak görmeleriyle büyüme zihniyetini sergilerler. Sistemi bir bütün olarak anlarlar ve ekiplerini sürekli iyileştirme için koçluk yaparlar.'
 '
   },
   {
