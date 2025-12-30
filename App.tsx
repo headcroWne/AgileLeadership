@@ -115,28 +115,29 @@ const App: React.FC = () => {
             
             <div className="flex gap-4">
               <button
-                onClick={() => setView(View.SURVEY)}
-                className={`px-4 py-2 rounded-full font-medium transition-all ${
-                  view === View.SURVEY 
-                  ? 'bg-indigo-100 text-indigo-700' 
-                  : 'text-gray-500 hover:bg-gray-100'
-                }`}
-              >
-                Anket
-              </button>
-              <button
-                onClick={() => setView(View.DASHBOARD)}
-                className={`px-4 py-2 rounded-full font-medium transition-all $
-                  {view === View.DASHBOARD && isAdmin ? (
-  <Dashboard /* props neyse aynı */ />
-) : (
-  <SurveyForm /* props neyse aynı */ />
-)
-                
-                `}
-              >
-                Dashboard
-              </button>
+  onClick={() => setView(View.SURVEY)}
+  className={`px-4 py-2 rounded-full font-medium transition-all ${
+    view === View.SURVEY
+      ? "bg-indigo-100 text-indigo-700"
+      : "text-gray-500 hover:bg-gray-100"
+  }`}
+>
+  Anket
+</button>
+
+{isAdmin && (
+  <button
+    onClick={() => setView(View.DASHBOARD)}
+    className={`px-4 py-2 rounded-full font-medium transition-all ${
+      view === View.DASHBOARD
+        ? "bg-indigo-100 text-indigo-700"
+        : "text-gray-500 hover:bg-gray-100"
+    }`}
+  >
+    Dashboard
+  </button>
+)}
+
             </div>
           </div>
         </div>
