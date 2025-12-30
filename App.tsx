@@ -18,6 +18,11 @@ enum View {
 }
 
 const App: React.FC = () => {
+
+  const isAdmin =
+  new URLSearchParams(window.location.search).get("admin") === "EVET";
+
+  
   const [view, setView] = useState<View>(View.SURVEY);
   const [responses, setResponses] = useState<SurveyResponse[]>([]);
 
