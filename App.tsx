@@ -154,7 +154,7 @@ const App: React.FC = () => {
       <footer className="bg-white border-t py-6 mt-12">
         <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-400 text-sm italic">
-            © 2024 Agile Leadership Assessment Tool. Tüm hakları saklıdır.
+            © 2026 Agile Leadership Assessment Tool. Tüm hakları saklıdır. srtcnckl
           </p>
           <div className="flex gap-4">
             <button 
