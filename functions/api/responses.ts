@@ -29,15 +29,22 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   });
 };
 
-export const onRequestDelete: PagesFunction<Env> = async ({ env }) => {
-  await env.DB.prepare(
-    'DELETE FROM responses'
-  ).run();
+export default {
+  async fetch(request: Request, env: Env): Promise<Response> {
+    const url = new URL(request.url);
 
-  return new Response(
-    JSON.stringify({ ok: true }),
-    {
-      headers: { "Content-Type": "application/json; charset=utf-8" },
+    // 1) TÜM KAYITLARI SİL (SADECE ADMIN)
+    if (request.method === "DELETE" && url.pathname === "/api/responses") {
+      const isAdmin = url.searchParams.get("admin") === "EVET";
+      if (!isAdmin) {
+        return new Response("Forbidden", { status: 403 });
+      }
+
+      await env.DB.prepare("DELETE FROM responses").run();
+      return Response.json({ ok: true });
     }
-  );
+
+    // ... burada mevcut POST/GET kodların devam edecek
+  },
 };
+
