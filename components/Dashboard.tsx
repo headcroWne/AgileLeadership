@@ -54,15 +54,6 @@ const Dashboard: React.FC<DashboardProps> = ({ responses }) => {
     setAiAnalysis(result);
     setIsAnalyzing(false);
   };
-
-{onResetAll && (
-  <button
-    onClick={onResetAll}
-    className="px-4 py-2 rounded-lg bg-red-600 text-white font-medium"
-  >
-    Deneme Kayıtlarını Sıfırla
-  </button>
-)}
   
   if (!stats) {
     return (
