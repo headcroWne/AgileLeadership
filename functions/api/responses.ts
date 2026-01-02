@@ -29,22 +29,18 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   });
 };
 
-export default {
-  async fetch(request: Request, env: Env): Promise<Response> {
-    const url = new URL(request.url);
+export const onRequestDelete: PagesFunction<Env> = async ({ request, env }) => {
+  const url = new URL(request.url);
 
-    // 1) TÜM KAYITLARI SİL (SADECE ADMIN)
-    if (request.method === "DELETE" && url.pathname === "/api/responses") {
-      const isAdmin = url.searchParams.get("admin") === "EVET";
-      if (!isAdmin) {
-        return new Response("Forbidden", { status: 403 });
-      }
+  // Basit kontrol: sadece ?admin=EVET ise izin ver
+  if (url.searchParams.get("admin") !== "EVET") {
+    return new Response("Forbidden", { status: 403 });
+  }
 
-      await env.DB.prepare("DELETE FROM responses").run();
-      return Response.json({ ok: true });
-    }
+  await env.DB.prepare(`DELETE FROM responses;`).run();
 
-    // ... burada mevcut POST/GET kodların devam edecek
-  },
+  return new Response(JSON.stringify({ ok: true, deleted: true }), {
+    headers: { "Content-Type": "application/json; charset=utf-8" },
+  });
 };
 
