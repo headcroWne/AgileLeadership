@@ -14,6 +14,12 @@ const Dashboard: React.FC<DashboardProps> = ({ responses }) => {
   const [aiAnalysis, setAiAnalysis] = useState<string>('');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
 
+  type Props = {
+  responses: SurveyResponse[];
+  onResetAll?: () => void;
+};
+
+  
   const calculateStats = () => {
     if (responses.length === 0) return null;
 
