@@ -19,7 +19,15 @@ const Dashboard: React.FC<DashboardProps> = ({ responses }) => {
   onResetAll?: () => void;
 };
 
-  
+  {onResetAll && (
+  <button
+    onClick={onResetAll}
+    className="px-4 py-2 rounded-lg bg-red-600 text-white font-medium"
+  >
+    Deneme Kayıtlarını Sıfırla
+  </button>
+)}
+
   const calculateStats = () => {
     if (responses.length === 0) return null;
 
