@@ -165,7 +165,10 @@ const App: React.FC = () => {
         {view === View.SURVEY ? (
           <SurveyForm onSubmit={handleSurveySubmit} />
         ) : (
-          <Dashboard responses={responses} />
+<Dashboard
+  responses={responses}
+  onResetAll={resetAllResponses}
+/>
         )}
       </main>
 
