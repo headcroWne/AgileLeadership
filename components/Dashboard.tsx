@@ -12,6 +12,23 @@ interface DashboardProps {
 
 const Dashboard: React.FC<DashboardProps> = ({ responses }) => {
   const [aiAnalysis, setAiAnalysis] = useState<string>('');
+
+  const resetAllResponses = async () => {
+    const ok = confirm("Tüm kayıtlar silinecek. Emin misiniz?");
+    if (!ok) return;
+
+    const res = await fetch("/api/responses?admin=EVET", { method: "DELETE" });
+
+    if (!res.ok) {
+      alert("Silme başarısız. Dashboard'u admin linkiyle açtığından emin misin?");
+      return;
+    }
+
+    alert("Kayıtlar silindi. Sayfa yenileniyor.");
+    window.location.reload();
+  };
+
+  
   const [isAnalyzing, setIsAnalyzing] = useState(false);
 
   type Props = {
