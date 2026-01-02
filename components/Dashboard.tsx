@@ -55,13 +55,6 @@ const Dashboard: React.FC<DashboardProps> = ({ responses }) => {
     setIsAnalyzing(false);
   };
 
-  if (!stats) {
-    return (
-      <div className="text-center py-20 bg-white rounded-2xl shadow-sm border border-dashed border-gray-300">
-        <h2 className="text-xl text-gray-500">Henüz yanıt alınmadı.</h2>
-      </div>
-    );
-  }
 {onResetAll && (
   <button
     onClick={onResetAll}
@@ -70,6 +63,15 @@ const Dashboard: React.FC<DashboardProps> = ({ responses }) => {
     Deneme Kayıtlarını Sıfırla
   </button>
 )}
+  
+  if (!stats) {
+    return (
+      <div className="text-center py-20 bg-white rounded-2xl shadow-sm border border-dashed border-gray-300">
+        <h2 className="text-xl text-gray-500">Henüz yanıt alınmadı.</h2>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-8 max-w-6xl mx-auto px-4 py-8">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
