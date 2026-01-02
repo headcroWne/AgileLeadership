@@ -49,6 +49,24 @@ const App: React.FC = () => {
   }
 };
 
+  const resetAllResponses = async () => {
+  if (!isAdmin) return;
+
+  const ok = confirm("Tüm deneme kayıtlarını silmek istediğinize emin misiniz?");
+  if (!ok) return;
+
+  const res = await fetch("/api/responses?admin=EVET", { method: "DELETE" });
+
+  if (!res.ok) {
+    alert("Silme işlemi başarısız oldu.");
+    return;
+  }
+
+  // Ekranı da temizle + DB’den tekrar çek
+  setResponses([]);
+  await loadResponsesFromDB();
+};
+
   
   useEffect(() => {
   if (view !== View.DASHBOARD) return;
