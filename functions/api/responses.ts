@@ -28,3 +28,16 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     headers: { "Content-Type": "application/json; charset=utf-8" },
   });
 };
+
+export const onRequestDelete: PagesFunction<Env> = async ({ env }) => {
+  await env.DB.prepare(
+    'DELETE FROM responses'
+  ).run();
+
+  return new Response(
+    JSON.stringify({ ok: true }),
+    {
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+    }
+  );
+};
