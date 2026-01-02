@@ -75,6 +75,15 @@ const Dashboard: React.FC<DashboardProps> = ({ responses }) => {
   if (!stats) {
     return (
       <div className="text-center py-20 bg-white rounded-2xl shadow-sm border border-dashed border-gray-300">
+            <div className="flex justify-end mb-4">
+      <button
+        onClick={resetAllResponses}
+        className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700"
+      >
+        Tüm Kayıtları Sıfırla
+      </button>
+    </div>
+
         <h2 className="text-xl text-gray-500">Henüz yanıt alınmadı.</h2>
       </div>
     );
