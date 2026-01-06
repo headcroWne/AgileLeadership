@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import SurveyForm from './components/SurveyForm';
 import Dashboard from './components/Dashboard';
@@ -18,62 +17,17 @@ enum View {
 }
 
 const App: React.FC = () => {
-
   const isAdmin =
-  new URLSearchParams(window.location.search).get("admin") === "EVET";
+    new URLSearchParams(window.location.search).get("admin") === "EVET";
 
-  
   const [view, setView] = useState<View>(View.SURVEY);
   const [responses, setResponses] = useState<SurveyResponse[]>([]);
 
   const loadResponsesFromDB = async () => {
-  try {
-    const res = await fetch("/api/responses?nocache=1");
-    const data = await res.json();
+    try {
+      const res = await fetch("/api/responses?nocache=1");
+      const data = await res.json();
 
-    if (data?.rows) {
-      const parsed = data.rows
-        .map((r: any) => {
-          try {
-            return JSON.parse(r.payload);
-          } catch {
-            return null;
-          }
-        })
-        .filter(Boolean);
-
-      setResponses(parsed);
-    }
-  } catch (err) {
-    console.error("DB fetch failed", err);
-  }
-};
-
-  const resetAllResponses = async () => {
-  if (!isAdmin) return;
-
-  const ok = confirm("Tüm deneme kayıtlarını silmek istediğinize emin misiniz?");
-  if (!ok) return;
-
-  const res = await fetch("/api/responses?admin=EVET", { method: "DELETE" });
-
-  if (!res.ok) {
-    alert("Silme işlemi başarısız oldu.");
-    return;
-  }
-
-  // Ekranı da temizle + DB’den tekrar çek
-  setResponses([]);
-  await loadResponsesFromDB();
-};
-
-  
-  useEffect(() => {
-  if (view !== View.DASHBOARD) return;
-
-  fetch("/api/responses?nocache=1")
-    .then((res) => res.json())
-    .then((data) => {
       if (data?.rows) {
         const parsed = data.rows
           .map((r: any) => {
@@ -87,34 +41,63 @@ const App: React.FC = () => {
 
         setResponses(parsed);
       }
-    })
-    .catch((err) => {
+    } catch (err) {
       console.error("DB fetch failed", err);
-    });
-}, [view]);
+    }
+  };
 
+  const resetAllResponses = async () => {
+    if (!isAdmin) return;
 
+    const ok = confirm("Tüm deneme kayıtlarını silmek istediğinize emin misiniz?");
+    if (!ok) return;
+
+    const res = await fetch("/api/responses?admin=EVET", { method: "DELETE" });
+
+    if (!res.ok) {
+      alert("Silme işlemi başarısız oldu.");
+      return;
+    }
+
+    // Ekranı da temizle + DB’den tekrar çek
+    setResponses([]);
+    await loadResponsesFromDB();
+  };
+
+  useEffect(() => {
+    if (view !== View.DASHBOARD) return;
+
+    fetch("/api/responses?nocache=1")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.rows) {
+          const parsed = data.rows
+            .map((r: any) => {
+              try {
+                return JSON.parse(r.payload);
+              } catch {
+                return null;
+              }
+            })
+            .filter(Boolean);
+
+          setResponses(parsed);
+        }
+      })
+      .catch((err) => {
+        console.error("DB fetch failed", err);
+      });
+  }, [view]);
 
   const handleSurveySubmit = async (response: SurveyResponse) => {
-  const newResponses = [...responses, response];
-  setResponses(newResponses);
-//  localStorage.setItem('agile_survey_responses', JSON.stringify(newResponses));
+    const newResponses = [...responses, response];
+    setResponses(newResponses);
 
-  await saveResponseToDB(response);
-
+    await saveResponseToDB(response);
     await loadResponsesFromDB();
 
-    
-  alert('Anketiniz başarıyla gönderildi. Katkınız için teşekkürler!');
-  setView(View.DASHBOARD);
-};
-
-
-  const clearData = () => {
-    if (confirm('Tüm verileri silmek istediğinize emin misiniz?')) {
-      localStorage.removeItem('agile_survey_responses');
-      setResponses([]);
-    }
+    alert('Anketiniz başarıyla gönderildi. Katkınız için teşekkürler!');
+    setView(View.DASHBOARD);
   };
 
   return (
@@ -130,32 +113,31 @@ const App: React.FC = () => {
                 Agile Leadership
               </span>
             </div>
-            
+
             <div className="flex gap-4">
               <button
-  onClick={() => setView(View.SURVEY)}
-  className={`px-4 py-2 rounded-full font-medium transition-all ${
-    view === View.SURVEY
-      ? "bg-indigo-100 text-indigo-700"
-      : "text-gray-500 hover:bg-gray-100"
-  }`}
->
-  Anket
-</button>
+                onClick={() => setView(View.SURVEY)}
+                className={`px-4 py-2 rounded-full font-medium transition-all ${
+                  view === View.SURVEY
+                    ? "bg-indigo-100 text-indigo-700"
+                    : "text-gray-500 hover:bg-gray-100"
+                }`}
+              >
+                Anket
+              </button>
 
-{isAdmin && (
-  <button
-    onClick={() => setView(View.DASHBOARD)}
-    className={`px-4 py-2 rounded-full font-medium transition-all ${
-      view === View.DASHBOARD
-        ? "bg-indigo-100 text-indigo-700"
-        : "text-gray-500 hover:bg-gray-100"
-    }`}
-  >
-    Dashboard
-  </button>
-)}
-
+              {isAdmin && (
+                <button
+                  onClick={() => setView(View.DASHBOARD)}
+                  className={`px-4 py-2 rounded-full font-medium transition-all ${
+                    view === View.DASHBOARD
+                      ? "bg-indigo-100 text-indigo-700"
+                      : "text-gray-500 hover:bg-gray-100"
+                  }`}
+                >
+                  Dashboard
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -165,10 +147,7 @@ const App: React.FC = () => {
         {view === View.SURVEY ? (
           <SurveyForm onSubmit={handleSurveySubmit} />
         ) : (
-<Dashboard
-  responses={responses}
-  onResetAll={resetAllResponses}
-/>
+          <Dashboard responses={responses} onResetAll={resetAllResponses} />
         )}
       </main>
 
@@ -177,14 +156,6 @@ const App: React.FC = () => {
           <p className="text-gray-400 text-sm italic">
             © 2026 Agile Leadership Assessment Tool. Tüm hakları saklıdır. srtcnckl
           </p>
-          <div className="flex gap-4">
-            <button 
-              onClick={clearData}
-              className="text-xs text-red-400 hover:text-red-600 transition-colors"
-            >
-              Verileri Temizle
-            </button>
-          </div>
         </div>
       </footer>
     </div>
