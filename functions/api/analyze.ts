@@ -3,11 +3,29 @@ export interface Env {
   GEMINI_API_KEY: string;
 }
 
-export const onRequestGet: PagesFunction<Env> = async () => {
+export const onRequestGet: PagesFunction<Env> = async ({ request, env }) => {
+  const url = new URL(request.url);
+
+  // Debug: model listesini getir
+  if (url.searchParams.get("list") === "1") {
+    const listUrl =
+      "https://generativelanguage.googleapis.com/v1beta/models?key=" +
+      encodeURIComponent(env.GEMINI_API_KEY);
+
+    const r = await fetch(listUrl);
+    const t = await r.text();
+
+    return new Response(
+      JSON.stringify({ ok: r.ok, status: r.status, body: t }),
+      { headers: { "Content-Type": "application/json; charset=utf-8" } }
+    );
+  }
+
   return new Response(JSON.stringify({ ok: true, endpoint: "analyze" }), {
     headers: { "Content-Type": "application/json; charset=utf-8" },
   });
 };
+
 
 export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   try {
